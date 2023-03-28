@@ -1,0 +1,13 @@
+datamax_poc:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "dtb80880.us-east-1"
+      user: dmu_etl_dmaxeagleus02sf
+      password: "Test12345"
+      role: dmr_readwrite_dmaxeagleus02sf
+      database: datamax_dmaxeagleus02sf
+      warehouse: compute_dh
+      schema: staging
+      threads: 200

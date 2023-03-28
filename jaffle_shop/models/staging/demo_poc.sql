@@ -1,0 +1,1 @@
+select * from int_call_act.veeva_call
