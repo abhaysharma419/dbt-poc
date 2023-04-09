@@ -1,0 +1,40 @@
+version: 2
+
+models:  
+  - name: demo_poc
+    description: "demo poc table"
+    config:
+      materialized: table
+    columns:
+      - name: call_id
+        tests:
+          - unique
+          - not_null
+
+exposures:
+  
+  - name: weekly_jaffle_report
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: >
+      Did someone say "exponential growth"?
+
+    owner:
+      name: Claire from Data
+      email: data@jaffleshop.com
+
+metrics:
+  - name: distinct_npi_numbers
+    label: hcp NPI numbers
+    model: ref('demo_poc')
+    description: "count of distinct hcp NPI numbers in email channel"
+
+    type: count_distinct
+    sql: hcp_npi_number 
+
+    timestamp: activity_date
+    time_grains: [day, week, month, quarter, year, all_time]
+    dimensions:
+      - email_subject
+    meta: {team: Omnichannel}
